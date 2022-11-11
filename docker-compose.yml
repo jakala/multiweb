@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  server:
+    container_name: ${APP_NAME}
+    restart: ${DEFAULT_RESTART}
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/api
+    working_dir: /api
+    entrypoint: ["php", "-S", "0.0.0.0:8000", "-t", "/api/public/"]
