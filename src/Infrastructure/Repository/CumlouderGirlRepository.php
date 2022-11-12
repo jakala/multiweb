@@ -11,7 +11,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class CumlouderGirlRepository implements GirlRepository
 {
-    private CONST PROVIDER = 'cumlouder';
+    private const PROVIDER = 'cumlouder';
 
     public function __construct(
         private readonly HttpClientInterface $client,

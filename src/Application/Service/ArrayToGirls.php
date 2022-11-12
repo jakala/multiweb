@@ -9,7 +9,6 @@ use App\Domain\ValueObject\Height;
 use App\Domain\ValueObject\Nick;
 use App\Domain\ValueObject\Permalink;
 use App\Domain\ValueObject\Thumbnail;
-use App\Domain\ValueObject\Width;
 
 class ArrayToGirls
 {
@@ -28,12 +27,11 @@ class ArrayToGirls
             new Nick($item['wbmerNick']),
             new Permalink($item['wbmerPermalink']),
             Birthdate::createFromString($item['wbmerBirthdate']),
-            new Height($item['wmberHeight']),
-            new Width($item['wmberWidth']),
-            new Thumbnail($item['wbmerThumbnail1']),
-            new Thumbnail($item['wbmerThumbnail2']),
-            new Thumbnail($item['wbmerThumbnail3']),
-            new Thumbnail($item['wbmerThumbnail4'])
+            new Height((int)$item['wbmerHeight']),
+            new Thumbnail($item['wbmerThumb1']),
+            new Thumbnail($item['wbmerThumb2']),
+            new Thumbnail($item['wbmerThumb3']),
+            new Thumbnail($item['wbmerThumb4'])
         );
     }
 }

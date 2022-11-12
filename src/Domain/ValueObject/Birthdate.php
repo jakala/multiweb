@@ -14,5 +14,4 @@ class Birthdate extends Time
         $value = DateTime::createFromFormat(self::DEFAULT_FORMAT, $datetime);
         return new self($value);
     }
-
 }

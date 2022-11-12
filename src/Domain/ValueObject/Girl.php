@@ -11,7 +11,6 @@ final class Girl
         public readonly Permalink $link,
         public readonly Birthdate $birthdate,
         public readonly Height $height,
-        public readonly Width $width,
         public readonly Thumbnail $thumbnail1,
         public readonly Thumbnail $thumbnail2,
         public readonly Thumbnail $thumbnail3,
