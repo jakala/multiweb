@@ -14,7 +14,6 @@ class HomeController
     public function __invoke(): JsonResponse
     {
         $girls = $this->cumlouderGirlRepository->findAll();
-        print_r($girls); die();
         return new JsonResponse($girls);
     }
 }
