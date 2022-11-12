@@ -4,9 +4,6 @@ namespace App\Infrastructure\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-/**
- * Class HealthCheckController.
- */
 class HealthCheckController
 {
     public function __invoke(): JsonResponse
