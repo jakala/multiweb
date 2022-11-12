@@ -26,6 +26,7 @@ services:
         exclude:
             - '../src/Application/response/'
             - '../src/Domain/'
+            - '../src/Shared/Domain/'
             - '../src/Kernel.php'
             - '../src/Tests/'
 
