@@ -8,12 +8,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class HomeController
 {
     public function __construct(
-        private GirlRepository $cumlouderGirlRepository
+        readonly GirlRepository $inMemoryGirlRepository
     ) {
     }
     public function __invoke(): JsonResponse
     {
-        $girls = $this->cumlouderGirlRepository->findAll();
+        $girls = $this->inMemoryGirlRepository->findAll();
         return new JsonResponse($girls);
     }
 }
