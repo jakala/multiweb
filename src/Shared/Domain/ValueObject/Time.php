@@ -11,7 +11,7 @@ class Time implements ValueObject
 {
     protected const DEFAULT_FORMAT = 'Y-m-d';
 
-    private function __construct(protected ?DateTime $value)
+    protected function __construct(protected ?DateTime $value)
     {
         $this->validateNullable($value);
     }
