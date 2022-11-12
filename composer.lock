@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3eb15f60db70260e91001d00eb3a57ee",
+    "content-hash": "b77f9c3f0761ded77b2edf89d3ac7300",
     "packages": [
         {
             "name": "dg/bypass-finals",
