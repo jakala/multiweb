@@ -4,7 +4,15 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-
+    webcams_uri: '%env(WEBCAMS_URI)%'
+    cumlouder:
+        webcam_nats: '%env(CUMLOUDER_WEBCAM_TRACKING_NATS)%'
+        web_nats: '%env(CUMLOUDER_WEB_TRACKING_NATS)%'
+    analytics: '%env(ANALYTICS)%'
+    webs:
+        - { name: 'ConejoX', url: 'http://www.conejox.com', css: 'conejox.css' }
+        - { name: 'Cerdas', url: 'http://www.cerdas.com', css: 'cerdas.css' }
+        - { name: 'Babosas', url: 'http://www.babosas.biz', css: 'babosas.css' }
 services:
     # default configuration for services in *this* file
     _defaults:

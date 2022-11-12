@@ -5,7 +5,8 @@ Cada afiliado contará con un diseño customizado mediante css. La estructura es
 ser capaz de reconocer qué template mostrar de acuerdo a la URL.
 
 El listado de webcams se obtiene desde la url: (formato Json)
-http://webcams.cumlouder.com/feed/webcams/online/61/1/.
+
+    http://webcams.cumlouder.com/feed/webcams/online/61/1/.
 
 Este listado varía cada 15 minutos, ya que es actualizado con las chicas online.
 
