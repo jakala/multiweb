@@ -1,0 +1,26 @@
+<div class="modal fade" id="myModal" role="dialog">
+<div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h4 class="modal-title"></h4>
+        </div>
+        <iframe class="modal-body" src="" width="1024" height="700"></iframe>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    $('a.link').on('click',function(){
+        content = $(this).attr('data-href');
+        name = $(this).attr('data-name');
+        $('.modal-title').html(name);
+        $('.modal-body').attr('src', content).show();
+        $('.modal-body').on('load', function() {
+            $('#myModal').modal({show: true});
+        });
+    });
+</script>

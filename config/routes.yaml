@@ -1,3 +1,9 @@
+home:
+    path: /
+    controller: App\Infrastructure\Controller\HomeController
+    methods: ['GET']
+
 health-check:
     path: /check
     controller: App\Infrastructure\Controller\HealthCheckController
+

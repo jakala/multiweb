@@ -6,8 +6,13 @@ services:
     restart: ${DEFAULT_RESTART}
     build: .
     ports:
-      - "8000:8000"
+      - "80:8000"
     volumes:
       - .:/api
     working_dir: /api
     entrypoint: ["php", "-S", "0.0.0.0:8000", "-t", "/api/public/"]
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: ${DEFAULT_RESTART}

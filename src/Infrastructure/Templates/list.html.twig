@@ -1,0 +1,15 @@
+<div class="listado-chicas">
+    {%  set nextBig = 6 %}
+    {%  set par = 0 %}
+    {%  for girl in list | slice(0,60)%}
+        {% if loop.index == nextBig %}
+            {% include 'thumbnail_girl.html.twig' with {'girl': girl, 'big' : true, 'right': par is odd } %}
+            {% set nextBig = nextBig + 12 %}
+            {% set par = par + 1 %}
+        {% else %}
+            {% include 'thumbnail_girl.html.twig' with {'girl': girl, 'big' : false, 'right': false } %}
+        {% endif %}
+    {% endfor %}
+    <div class="clear"></div>
+    <a class="btn-mas-modelos" href="#" title="Mostrar más modelos">Siguiente Página</a>
+</div>

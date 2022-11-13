@@ -4,12 +4,35 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    webcams_host: '%env(WEBCAMS_HOST)%'
+    webcams_uri: '%env(WEBCAMS_URI)%'
+    joinpage_uri: '%env(JOINPAGE_URI)%'
 
+    webs:
+        - { name: 'ConejoX', url: 'conejox.com', css: 'conejox.css', webcam_nats: 'cwPX3nlWxQYKqpgzHmGBHZPeVgrcTW', web_nats: '7bd2pNUqxc6ucy3dYiKWf4Yt4kwTzV', analytics: 'UA-39020159-70'}
+        - { name: 'Cerdas',  url: 'cerdas.com',  css: 'cerdas.css',  webcam_nats: 'HXWsHWg5Jes6a9YxKNLonhKPrhNNiE', web_nats: 'BY3cHj2XiTQw6DATlnk9k6EndBGcLj', analytics: 'UA-26020144-23'}
+        - { name: 'Babosas', url: 'babosas.biz', css: 'babosas.css', webcam_nats: 'pPoHsfsIRwuEvslM4j1ctWMBrE8ZNu', web_nats: '6HQE7bfHwSadlbFUldViXX4o82a7qE', analytics: 'UA-69020132-19'}
+
+    redis_scheme: '%env(REDIS_SCHEME)%'
+    redis_port: '%env(REDIS_PORT)%'
+    redis_host: '%env(REDIS_HOST)%'
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+        bind:
+            $webcamsUri: '%webcams_host%%webcams_uri%'
+            $joinpageUri: '%webcams_host%%joinpage_uri%'
+            $webs: '%webs%'
+            $redisScheme: '%redis_scheme%'
+            $redisPort: '%redis_port%'
+            $redisHost: '%redis_host%'
+
+            $inMemoryGirlRepository: '@App\Infrastructure\Repository\InMemoryGirlRepository'
+            $cumlouderGirlRepository: '@App\Infrastructure\Repository\CumlouderGirlRepository'
+            $redisProviderCache: '@App\Shared\Infrastructure\RedisProviderCache'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -18,6 +41,7 @@ services:
         exclude:
             - '../src/Application/response/'
             - '../src/Domain/'
+            - '../src/Shared/Domain/'
             - '../src/Kernel.php'
             - '../src/Tests/'
 
@@ -38,10 +62,6 @@ services:
     App\Shared\Infrastructure\CorrelationHeaderProcessor:
         tags:
             - { name: monolog.processor }
-
-    App\Shared\Infrastructure\ResponseListener:
-        tags:
-            - { name: kernel.event_listener, event: kernel.response, method: onResponse }
 
     App\Shared\Infrastructure\ExceptionListener:
         tags:

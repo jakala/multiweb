@@ -34,9 +34,15 @@ fix-style:
 
 # crear informe de metricas php
 .PHONY: metrics
+metrics:
 	@docker exec ${APP_NAME} vendor/bin/phpmetrics src --report-html=var/metrics
 
 # revert last changes in repository
 .PHONY: revert
 revert:
 	@git reset --hard
+
+# clear redis cache
+.PHONY: clear-redis
+clear-redis:
+	@docker exec redis redis-cli flushall
