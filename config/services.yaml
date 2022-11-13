@@ -10,9 +10,9 @@ parameters:
         web_nats: '%env(CUMLOUDER_WEB_TRACKING_NATS)%'
     analytics: '%env(ANALYTICS)%'
     webs:
-        - { name: 'ConejoX', url: 'http://www.conejox.com', css: 'conejox.css' }
-        - { name: 'Cerdas', url: 'http://www.cerdas.com', css: 'cerdas.css' }
-        - { name: 'Babosas', url: 'http://www.babosas.biz', css: 'babosas.css' }
+        - { name: 'ConejoX', url: 'conejox.com', css: 'conejox.css' }
+        - { name: 'Cerdas', url: 'cerdas.com', css: 'cerdas.css' }
+        - { name: 'Babosas', url: 'babosas.biz', css: 'babosas.css' }
 
 services:
     # default configuration for services in *this* file
@@ -24,7 +24,7 @@ services:
             $webcamsUri: '%webcams_uri%'
             $inMemoryGirlRepository: '@App\Infrastructure\Repository\InMemoryGirlRepository'
             $cumlouderGirlRepository: '@App\Infrastructure\Repository\CumlouderGirlRepository'
-
+            $webs: '%webs%'
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
