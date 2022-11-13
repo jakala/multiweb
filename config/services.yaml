@@ -54,10 +54,6 @@ services:
         tags:
             - { name: monolog.processor }
 
-    App\Shared\Infrastructure\ResponseListener:
-        tags:
-            - { name: kernel.event_listener, event: kernel.response, method: onResponse }
-
     App\Shared\Infrastructure\ExceptionListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onException }

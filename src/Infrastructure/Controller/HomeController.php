@@ -3,21 +3,20 @@
 namespace App\Infrastructure\Controller;
 
 use App\Domain\ValueObject\GirlRepository;
-use http\Client\Response;
+use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
 class HomeController
 {
     public function __construct(
-        readonly GirlRepository $inMemoryGirlRepository,
-//        readonly Environment $twig
+        readonly GirlRepository $cumlouderGirlRepository,
+        readonly Environment $twig
     ) {
     }
     public function __invoke(): Response
     {
-        $template = '';
-        $list = $this->inMemoryGirlRepository->findAll();
-        dd($list);
-  //      return new Response($this->twig->render($template, $list->girls));
+        $template = '/base.html.twig';
+        $list = $this->cumlouderGirlRepository->findAll();
+        return new Response($this->twig->render($template, ['list' => $list->girls]));
     }
 }
