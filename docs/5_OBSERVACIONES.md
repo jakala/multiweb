@@ -4,7 +4,7 @@ Lo siguiente son datos de interés en relación al desarrollo del proyecto.
 Para simular el funcionamiento de los dominios alojados en la aplicacion (conejox, cerdas y babosas), dado que el desarrollo
 es con un docker que hace las veces de servidor, he necesitado editar mi /etc/hosts y añadir lo siguiente:
 
-    127.0.0.1	localhost conejox.com cerdas.com babosas.biz vivoras.com
+    127.0.0.1	localhost conejox.com cerdas.com babosas.biz viboras.com
 
 He añadido el dominio `vivoras.com` para, dado que no existe alojado en la aplicacion, muestre un mensaje de error.
 ## thumbnails
