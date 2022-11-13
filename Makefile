@@ -41,3 +41,8 @@ metrics:
 .PHONY: revert
 revert:
 	@git reset --hard
+
+# clear redis cache
+.PHONY: clear-redis
+clear-redis:
+	@docker exec redis redis-cli flushall

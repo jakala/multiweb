@@ -1,4 +1,8 @@
 # Observaciones al proyecto
+Lo siguiente son datos de interés en relación al desarrollo del proyecto. 
+## thumbnails
+En la documentación de la práctica se indica que hay 5 thumbnails y su uso. Sin embargo, en los datos que se reciben de 
+la url indicada, solo se encuentran del 1 al 4. No se que puede indicarse del 5º thumbnail (¿quizás es un error de doc?) 
 ## información de la pagina web
 la información que nos llega de la url contiene bastantes datos. No he modelado todos, solo aquellos de los que he visto
 una utilidad más cercana. Si necesitáramos mas información, tendriamos que añadir el `valueObject` correspondiente, agregarlo
@@ -20,7 +24,10 @@ Por ello, he optado por añadir imagenes aleatorias en cada representación de l
 
 Las imágenes que he elegido son de comic manga. 
 
-## benchmark
+## benchmark e infraestructura
+La infraestructura que utiliza la aplicación es un docker con la aplicación, que ejecuta la aplicacion con PHP como servidor directamente.
+No utilizamos apache-fpm, o nginx.
+
 La primera prueba de aproximación para ver el rendimiento de la aplicación, ha sido utilizar el comando `ab` de apache,
 que nos permite hacer pruebas de benchmark sobre la url. 
 El comando a utilizar es:
@@ -33,20 +40,6 @@ En este caso, he utilizado como dominio `cerdas.com`.
 El resultado del benchmark ha sido:
 
 ```
-Benchmarking cerdas.com (be patient)
-Completed 100 requests
-Completed 200 requests
-Completed 300 requests
-Completed 400 requests
-Completed 500 requests
-Completed 600 requests
-Completed 700 requests
-Completed 800 requests
-Completed 900 requests
-Completed 1000 requests
-Finished 1000 requests
-
-
 Server Software:        
 Server Hostname:        cerdas.com
 Server Port:            80
@@ -57,8 +50,6 @@ Document Length:        31938 bytes
 Concurrency Level:      10
 Time taken for tests:   4243.917 seconds
 Complete requests:      1000
-Failed requests:        992
-   (Connect: 0, Receive: 0, Length: 992, Exceptions: 0)
 Total transferred:      32211478 bytes
 HTML transferred:       31918478 bytes
 Requests per second:    0.24 [#/sec] (mean)
@@ -83,4 +74,66 @@ Percentage of the requests served within a certain time (ms)
   98%  42942
   99%  43158
  100%  43650 (longest request)
+```
+se puede observar un benchmark bastante malo en el commit #####
+
+En una siguiente fase, cambiamos la infraestructura,y vamos a añadir un servidor redis. En dicho servidor vamos a guardar
+en cache durante 15 min (segun doc) los resultados de la llamada a la web.
+
+Una vez añadido el servicio en docker, y cambiado el repositorio `CumlouderGirlRepository`, procedemos a hacer el mismo
+comando. El resultado es muy interesante:
+
+```
+Server Software:        
+Server Hostname:        cerdas.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        31736 bytes
+
+Concurrency Level:      10
+Time taken for tests:   7.166 seconds
+Complete requests:      1000
+Total transferred:      32127196 bytes
+HTML transferred:       31834196 bytes
+Requests per second:    139.55 [#/sec] (mean)
+Time per request:       71.657 [ms] (mean)
+Time per request:       7.166 [ms] (mean, across all concurrent requests)
+Transfer rate:          4378.40 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.0      0       0
+Processing:     4   33 134.5     29    4280
+Waiting:        4   33 134.5     29    4280
+Total:          4   33 134.5     29    4281
+
+Percentage of the requests served within a certain time (ms)
+  50%     29
+  66%     29
+  75%     29
+  80%     29
+  90%     29
+  95%     30
+  98%     30
+  99%     31
+ 100%   4281 (longest request)
+```
+Se pueden ver bastantes mejoras:
+
+|     | sin redis  | con redis |
+|-----|------------|-----------|
+| Requests per second |  0.24          | 139.55    | | |
+| Time per request |   42439.173         | 71.657    | | |
+| Transfer rate | 7.41 |   4378.40        |
+
+# Infraestructura
+En el proyecto disponemos de dos servicios docker:
+
+    aplicacion PHP (app)
+    servidor Redis (redis)
+
+```mermaid
+graph TD
+    A[Aplicacion PHP] --> B[cache redis]
 ```

@@ -14,6 +14,9 @@ parameters:
         - { name: 'Cerdas', url: 'cerdas.com', css: 'cerdas.css' }
         - { name: 'Babosas', url: 'babosas.biz', css: 'babosas.css' }
 
+    redis_scheme: '%env(REDIS_SCHEME)%'
+    redis_port: '%env(REDIS_PORT)%'
+    redis_host: '%env(REDIS_HOST)%'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -22,9 +25,15 @@ services:
 
         bind:
             $webcamsUri: '%webcams_uri%'
+            $webs: '%webs%'
+            $redisScheme: '%redis_scheme%'
+            $redisPort: '%redis_port%'
+            $redisHost: '%redis_host%'
+
             $inMemoryGirlRepository: '@App\Infrastructure\Repository\InMemoryGirlRepository'
             $cumlouderGirlRepository: '@App\Infrastructure\Repository\CumlouderGirlRepository'
-            $webs: '%webs%'
+            $redisProviderCache: '@App\Shared\Infrastructure\RedisProviderCache'
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
