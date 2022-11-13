@@ -32,7 +32,7 @@ class HomeController
             fn($web) => $web['url'] == $host,
         );
 
-        if(empty($found)) {
+        if (empty($found)) {
             throw new WebInvalid($host);
         }
 
