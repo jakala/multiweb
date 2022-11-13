@@ -1,5 +1,12 @@
 # Observaciones al proyecto
 Lo siguiente son datos de interés en relación al desarrollo del proyecto. 
+## dominios
+Para simular el funcionamiento de los dominios alojados en la aplicacion (conejox, cerdas y babosas), dado que el desarrollo
+es con un docker que hace las veces de servidor, he necesitado editar mi /etc/hosts y añadir lo siguiente:
+
+    127.0.0.1	localhost conejox.com cerdas.com babosas.biz vivoras.com
+
+He añadido el dominio `vivoras.com` para, dado que no existe alojado en la aplicacion, muestre un mensaje de error.
 ## thumbnails
 En la documentación de la práctica se indica que hay 5 thumbnails y su uso. Sin embargo, en los datos que se reciben de 
 la url indicada, solo se encuentran del 1 al 4. No se que puede indicarse del 5º thumbnail (¿quizás es un error de doc?) 
@@ -16,6 +23,10 @@ de configuracion de symfony, en la seccion `parameters`.
 Como mejora, se podria incluir un sistema tipo scss, que compilara en un único archivo css los tres que se necesitan.
 También habria que revisar todo el css. Quizás se pueda simplificar utilizando un bootstrap o rehaciendo todo desde 0. Esto
 último no he optado por ello, porque no me veo actualmente capacitado para temas de frontend/css.
+
+## link emergente
+Para ver la pantalla de registro de la webcam, me resultaba mas comodo utilizar bootstrap. Esto hace que cargue un poco mas
+la web (habria que optimizarlo). El contenido de la url de la webcam se carga dentro del marco central del modal.
 
 ## Url de imagenes
 Aunque la información que nos llega de la petición de la url contiene entre otros los thumbnail de cada camara, los datos

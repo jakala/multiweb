@@ -137,3 +137,22 @@ body{
 .box-data .menu a:hover{ text-decoration:underline; }
 
 .box-data span{ margin:0 8px;}
+
+body .modal-dialog { /* Width */
+	max-width: 100%;
+	width: auto !important;
+	display: inline-block;
+}
+.modal {
+	z-index: -1;
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-title {
+	text-align: center;
+}
+.modal-open .modal {
+	z-index: 1050;
+}

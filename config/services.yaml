@@ -4,15 +4,14 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    webcams_host: '%env(WEBCAMS_HOST)%'
     webcams_uri: '%env(WEBCAMS_URI)%'
-    cumlouder:
-        webcam_nats: '%env(CUMLOUDER_WEBCAM_TRACKING_NATS)%'
-        web_nats: '%env(CUMLOUDER_WEB_TRACKING_NATS)%'
-    analytics: '%env(ANALYTICS)%'
+    joinpage_uri: '%env(JOINPAGE_URI)%'
+
     webs:
-        - { name: 'ConejoX', url: 'conejox.com', css: 'conejox.css' }
-        - { name: 'Cerdas', url: 'cerdas.com', css: 'cerdas.css' }
-        - { name: 'Babosas', url: 'babosas.biz', css: 'babosas.css' }
+        - { name: 'ConejoX', url: 'conejox.com', css: 'conejox.css', webcam_nats: 'cwPX3nlWxQYKqpgzHmGBHZPeVgrcTW', web_nats: '7bd2pNUqxc6ucy3dYiKWf4Yt4kwTzV', analytics: 'UA-39020159-70'}
+        - { name: 'Cerdas',  url: 'cerdas.com',  css: 'cerdas.css',  webcam_nats: 'HXWsHWg5Jes6a9YxKNLonhKPrhNNiE', web_nats: 'BY3cHj2XiTQw6DATlnk9k6EndBGcLj', analytics: 'UA-26020144-23'}
+        - { name: 'Babosas', url: 'babosas.biz', css: 'babosas.css', webcam_nats: 'pPoHsfsIRwuEvslM4j1ctWMBrE8ZNu', web_nats: '6HQE7bfHwSadlbFUldViXX4o82a7qE', analytics: 'UA-69020132-19'}
 
     redis_scheme: '%env(REDIS_SCHEME)%'
     redis_port: '%env(REDIS_PORT)%'
@@ -24,7 +23,8 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
         bind:
-            $webcamsUri: '%webcams_uri%'
+            $webcamsUri: '%webcams_host%%webcams_uri%'
+            $joinpageUri: '%webcams_host%%joinpage_uri%'
             $webs: '%webs%'
             $redisScheme: '%redis_scheme%'
             $redisPort: '%redis_port%'

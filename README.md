@@ -15,7 +15,5 @@ Se incluye un docker-compose para poder probar directamente la aplicación.
 - [Instalación](docs/2_INSTALACION.md)
 - [Makefile](docs/3_MAKEFILE.md)
 - [Prueba](docs/4_PRUEBA.md)
+- [Observaciones](docs/5_OBSERVACIONES.md)
 
-## Lista TODO
-- implementar CQRS
-- kernel asincrono (react-php)

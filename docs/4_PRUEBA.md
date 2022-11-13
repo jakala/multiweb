@@ -46,6 +46,9 @@ Datos que se deben guardar de cada afiliado:
   Tener en cuenta que ésta herramienta va a recibir miles de visitas, por lo que debe optimizarse al
   máximo.
 
+MjYwNS4xLjI1LjQzLjAuMC4wLjAuMA
+VE6Bnwn5m3Xt8GzbPDiZ1OlzGp3HyIDt
+cwPX3nlWxQYKqpgzHmGBHZPeVgrcTW
 - Templates: Te adjuntamos un zip con lo que necesitas
 
 ## Nota

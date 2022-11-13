@@ -13,7 +13,8 @@ class HomeController
     public function __construct(
         readonly GirlRepository $cumlouderGirlRepository,
         readonly Environment $twig,
-        readonly array $webs
+        readonly array $webs,
+        readonly string $joinpageUri
     ) {
     }
     public function __invoke(Request $request): Response
@@ -22,7 +23,12 @@ class HomeController
         $web = $this->validate($host);
         $template = '/base.html.twig';
         $list = $this->cumlouderGirlRepository->findAll();
-        return new Response($this->twig->render($template, ['list' => $list->girls, 'site' => $web]));
+        return new Response(
+            $this->twig->render(
+                $template,
+                ['list' => $list->girls, 'site' => $web, 'joinpage' => $this->joinpageUri]
+            )
+        );
     }
 
     private function validate(string $host): array
